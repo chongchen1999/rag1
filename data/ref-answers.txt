@@ -7,7 +7,7 @@
 3. Answer: c) The first reprogrammable quantum computer
    Explanation: This was significant because previous quantum computing platforms couldn't program new algorithms into their system.
 
-4. Answer: c) Census tabulation
+4. Answer: d) Military calculations
    Explanation: The U.S. Census Bureau's seven-year processing time crisis led to the development of punch-card based computers like ENIAC.
 
 5. Answer: b) The TRS-80's initial production
