@@ -1,0 +1,29 @@
+1. Answer: b) 1947-1962, using transistors
+   Explanation: UNIVAC 1107 was part of the second generation of computers which was characterized by the use of transistors instead of vacuum tubes.
+
+2. Answer: c) Robert Metcalfe's development of Ethernet
+   Explanation: Robert Metcalfe, while at Xerox, developed Ethernet specifically for connecting multiple computers and other hardware.
+
+3. Answer: c) The first reprogrammable quantum computer
+   Explanation: This was significant because previous quantum computing platforms couldn't program new algorithms into their system.
+
+4. Answer: c) Census tabulation
+   Explanation: The U.S. Census Bureau's seven-year processing time crisis led to the development of punch-card based computers like ENIAC.
+
+5. Answer: b) The TRS-80's initial production
+   Explanation: The TRS-80 was significant because it was the first time non-geeks could write programs and make computers do what they wished, despite its initial limited production run of 3,000 units.
+
+6. Answer: c) It was the first with a flip form factor marketed as a "laptop"
+   Explanation: The Gavilan SC marked a significant milestone as the first portable computer with the now-familiar flip form factor and was the first to be specifically marketed as a "laptop."
+
+7. Answer: c) All paths from root to NULL have the same number of red nodes
+   Explanation: In a Red-Black tree, the actual requirement is that all paths from root to NULL have the same number of black nodes (black height), not red nodes. The other properties listed are all valid requirements for a Red-Black tree. This is what ensures the tree remains approximately balanced.
+
+8. Answer: b) N/2 + 1
+   Explanation: In the Paxos consensus algorithm, a majority quorum is required to achieve consensus. This means more than half of the nodes must be operational, which is calculated as N/2 + 1. This ensures that there can't be two different majorities making conflicting decisions, as any two majorities must overlap in at least one node.
+
+9. Answer: c) Fully associative mapping
+   Explanation: Fully associative mapping allows any block to be placed in any cache line, which provides the highest flexibility and thus the highest potential hit rate. However, it requires comparing the tag of every cache line in parallel, making it the most expensive to implement in hardware. This is why it's typically only used for small caches like TLBs.
+
+10. Answer: b) 67%
+    Explanation: A fill factor of about 67% (2/3) is considered optimal for B+ trees. This leaves enough free space for insertions without requiring frequent node splits, while still maintaining good space utilization. When nodes become full, they are split into two nodes that are each about 67% full, which helps maintain this optimal fill factor over time.

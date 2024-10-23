@@ -51,14 +51,6 @@ def generate_rag_response(prompt):
     else:
         response = chat_engine.generate_response(prompt)
 
-    # End timing and resource monitoring
-    end_time = time.time()
-    end_cpu = psutil.cpu_percent()
-    end_memory = psutil.virtual_memory().percent
-    response_time = end_time - start_time
-    cpu_usage = end_cpu - start_cpu
-    memory_usage = end_memory - start_memory
-
     with st.chat_message('assistant'):
         message_placeholder = st.empty()
         res = ''
@@ -67,10 +59,17 @@ def generate_rag_response(prompt):
             message_placeholder.markdown(res + '▌')
         message_placeholder.markdown(res)
 
+    # End timing and resource monitoring
+    end_time = time.time()
+    end_cpu = psutil.cpu_percent()
+    end_memory = psutil.virtual_memory().percent
+    response_time = end_time - start_time
+    cpu_usage = end_cpu - start_cpu
+    memory_usage = end_memory - start_memory
+
     # Log response time and resource usage
     st.session_state.messages.append({'role': 'user', 'content': prompt})
     st.session_state.messages.append({'role': 'assistant', 'content': response})
     st.sidebar.write(f"Response Time (RAG): {response_time:.2f} seconds")
     st.sidebar.write(f"CPU Usage (RAG): {cpu_usage:.2f}%")
     st.sidebar.write(f"Memory Usage (RAG): {memory_usage:.2f}%")
-    

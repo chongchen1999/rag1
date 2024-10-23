@@ -1,0 +1,59 @@
+1. During which period was UNIVAC 1107 developed, and what technological advancement characterized this era?
+   a) 1937-1946, using vacuum tubes
+   b) 1947-1962, using transistors
+   c) 1963-1975, using integrated circuits
+   d) 1975-present, using microprocessors
+
+2. Which historical development in 1973 fundamentally changed how computers could be interconnected?
+   a) The invention of UNIX operating system
+   b) Development of DRAM by Intel
+   c) Robert Metcalfe's development of Ethernet
+   d) The creation of the floppy disk
+
+3. What significant advancement occurred in 2016 that marked a breakthrough in quantum computing?
+   a) The first commercially available quantum computer
+   b) The first quantum network
+   c) The first reprogrammable quantum computer
+   d) The first stable quantum bit
+
+4. In the context of early computer development, what was the primary motivation for creating ENIAC?
+   a) Business automation
+   b) Scientific research
+   c) Census tabulation
+   d) Military calculations
+
+5. Which 1977 development represented a significant shift in making computers accessible to non-technical users?
+   a) The Apple II launch
+   b) The TRS-80's initial production
+   c) The invention of VisiCalc
+   d) The development of WordStar
+
+6. What was the key technological distinction of the Gavilan SC in 1983?
+   a) It was the first portable computer with a GUI
+   b) It was the first to use MS-DOS
+   c) It was the first with a flip form factor marketed as a "laptop"
+   d) It was the first to use integrated circuits
+
+7. In a Red-Black tree, which property is NOT required for the tree to be valid?
+   a) Every node is either red or black
+   b) The root is black
+   c) All paths from root to NULL have the same number of red nodes
+   d) All leaves (NULL) are considered black
+
+8. Given a distributed system using the Paxos consensus algorithm, what is the minimum number of nodes that must be operational to achieve consensus in a system with N nodes?
+   a) N/2
+   b) N/2 + 1
+   c) 2N/3
+   d) N - 1
+
+9. In the context of CPU cache design, which of the following cache mapping policies would result in the highest hit rate but potentially the most expensive implementation?
+   a) Direct mapping
+   b) Set associative mapping
+   c) Fully associative mapping
+   d) Sequential mapping
+
+10. When implementing a B+ tree index in a database system, what is the optimal fill factor (percentage of space used in each node) to maximize performance?
+    a) 50%
+    b) 67%
+    c) 75%
+    d) 100%
