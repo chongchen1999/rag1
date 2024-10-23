@@ -14,7 +14,7 @@ DEFAULT_SYSTEM_PROMPT = "You are a chatbot, able to have normal interactions."
 # Model configurations
 EMBEDDING_MODEL = "nomic-embed-text"
 LLM_MODEL = "gemma2"
-LLM_TIMEOUT = 3.0
+LLM_TIMEOUT = 360.0
 
 # Supported file types
 SUPPORTED_FILE_TYPES = ["txt", "pdf", "docx"]
