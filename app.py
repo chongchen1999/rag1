@@ -6,7 +6,7 @@ from utils import handle_file_upload, get_files_hash
 from config import *
 
 def main():
-    st.title("💻 Local RAG Chatbot 🤖")
+    st.title("💻 Local Chatbot 🤖")
     st.caption("🚀 A chatbot powered by LlamaIndex and Ollama 🦙")
 
     # Setup sidebar and get configurations
@@ -49,28 +49,35 @@ def main():
     # Handle chat interaction
     prompt = display_chat()
     if prompt:
+        # Check if chat engine is ready
         if 'chat_engine' not in st.session_state:
             st.error("Please upload files first or switch to non-RAG mode.")
             st.stop()
 
+        # Display the user's message in the chat
         with st.chat_message('user'):
             st.markdown(prompt)
 
-        context = "\n".join([msg['content'] for msg in st.session_state.messages 
-                           if msg['role'] == 'assistant'])
+        # Fetch context for multi-turn conversation
+        context = "\n".join([msg['content'] for msg in st.session_state.messages if msg['role'] == 'assistant'])
 
+        # Generate response in non-RAG mode
         if not is_rag_mode:
             response = st.session_state['chat_engine'](prompt, context)
-        else:
-            response = st.session_state['chat_engine'].chat(prompt)
 
+        # Display the assistant's response in the chat
         with st.chat_message('assistant'):
             st.markdown(response)
 
-        st.session_state.messages.extend([
-            {'role': 'user', 'content': prompt},
-            {'role': 'assistant', 'content': response}
-        ])
+        # Add messages to chat history
+        st.session_state.messages.append({
+            'role': 'user',
+            'content': prompt,
+        })
+        st.session_state.messages.append({
+            'role': 'assistant',
+            'content': response,
+        })
 
 if __name__ == "__main__":
     main()
