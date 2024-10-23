@@ -16,22 +16,28 @@ def main():
     if is_rag_mode:
         current_files_hash = get_files_hash(uploaded_files) if uploaded_files else None
 
-        if 'files_hash' not in st.session_state or st.session_state['files_hash'] != current_files_hash:
-            st.session_state['files_hash'] = current_files_hash
-            if 'chat_engine' in st.session_state:
-                del st.session_state['chat_engine']
-                st.cache_resource.clear()
-            
+        if 'files_hash' in st.session_state:
+            if st.session_state['files_hash'] != current_files_hash:
+                st.session_state['files_hash'] = current_files_hash
+                if 'chat_engine' in st.session_state:
+                    del st.session_state['chat_engine']
+                    st.cache_resource.clear()
+                if uploaded_files:
+                    st.session_state['temp_dir'] = handle_file_upload(uploaded_files)
+                    st.sidebar.success("Files uploaded successfully.")
+                    if 'chat_engine' not in st.session_state:
+                        st.session_state['chat_engine'] = init_models_rag(uploaded_files, generation_config)
+                else:
+                    st.sidebar.error("No uploaded files.")
+        else:
             if uploaded_files:
+                st.session_state['files_hash'] = current_files_hash
                 st.session_state['temp_dir'] = handle_file_upload(uploaded_files)
                 st.sidebar.success("Files uploaded successfully.")
                 if 'chat_engine' not in st.session_state:
-                    st.session_state['chat_engine'] = init_models_rag(
-                        st.session_state['temp_dir'], 
-                        generation_config
-                    )
+                    st.session_state['chat_engine'] = init_models_rag(uploaded_files, generation_config)
             else:
-                st.sidebar.error("Please upload files for RAG mode.")
+                st.sidebar.error("No uploaded files.")
 
     # Handle non-RAG mode
     else:
@@ -43,41 +49,63 @@ def main():
 
     # Initialize chat history
     if 'messages' not in st.session_state:
-        st.session_state.messages = [{"role": "assistant", 
-                                    "content": "Hello, I'm your assistant, how can I help you?"}]
+        st.session_state.messages = [{"role": "assistant", "content": "Hello, I'm your assistant, how can I help you?"}]
 
     # Handle chat interaction
     prompt = display_chat()
     if prompt:
-        # Check if chat engine is ready
-        if 'chat_engine' not in st.session_state:
-            st.error("Please upload files first or switch to non-RAG mode.")
-            st.stop()
+        if is_rag_mode:
+            # Check if chat engine is ready
+            if 'chat_engine' not in st.session_state:
+                st.error("Please upload files first or switch to non-RAG mode.")
+                st.stop()
+                
+            with st.chat_message('user'):
+                st.markdown(prompt)
 
-        # Display the user's message in the chat
-        with st.chat_message('user'):
-            st.markdown(prompt)
+            # Generate response
+            response = st.session_state['chat_engine'].stream_chat(prompt)
+            with st.chat_message('assistant'):
+                message_placeholder = st.empty()
+                res = ''
+                for token in response.response_gen:
+                    res += token
+                    message_placeholder.markdown(res + '▌')
+                message_placeholder.markdown(res)
 
-        # Fetch context for multi-turn conversation
-        context = "\n".join([msg['content'] for msg in st.session_state.messages if msg['role'] == 'assistant'])
+            # Add messages to history
+            st.session_state.messages.append({
+                'role': 'user',
+                'content': prompt,
+            })
+            st.session_state.messages.append({
+                'role': 'assistant',
+                'content': response,
+            })
+        
+        else:
+            # Display the user's message in the chat
+            with st.chat_message('user'):
+                st.markdown(prompt)
 
-        # Generate response in non-RAG mode
-        if not is_rag_mode:
+            # Fetch context for multi-turn conversation
+            context = "\n".join([msg['content'] for msg in st.session_state.messages if msg['role'] == 'assistant'])
+
             response = st.session_state['chat_engine'](prompt, context)
 
-        # Display the assistant's response in the chat
-        with st.chat_message('assistant'):
-            st.markdown(response)
+            # Display the assistant's response in the chat
+            with st.chat_message('assistant'):
+                st.markdown(response)
 
-        # Add messages to chat history
-        st.session_state.messages.append({
-            'role': 'user',
-            'content': prompt,
-        })
-        st.session_state.messages.append({
-            'role': 'assistant',
-            'content': response,
-        })
+            # Add messages to chat history
+            st.session_state.messages.append({
+                'role': 'user',
+                'content': prompt,
+            })
+            st.session_state.messages.append({
+                'role': 'assistant',
+                'content': response,
+            })
 
 if __name__ == "__main__":
     main()

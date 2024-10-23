@@ -1,4 +1,5 @@
 # models.py
+import streamlit as st
 import subprocess
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.ollama import OllamaEmbedding
@@ -19,7 +20,7 @@ def init_models_rag(temp_dir, generation_config):
     )
     Settings.llm = llm
 
-    documents = SimpleDirectoryReader(temp_dir).load_data()
+    documents = SimpleDirectoryReader(st.session_state['temp_dir']).load_data()
     index = VectorStoreIndex.from_documents(documents)
 
     memory = ChatMemoryBuffer.from_defaults(token_limit=DEFAULT_TOKEN_LIMIT)
