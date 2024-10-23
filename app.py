@@ -6,6 +6,8 @@ from llama_index.core.memory import ChatMemoryBuffer
 import os
 import tempfile
 import hashlib
+import subprocess
+import shlex
 
 # Environment variables
 os.environ['OLLAMA_NUM_PARALLEL'] = '2'
@@ -34,7 +36,7 @@ def get_files_hash(files):
 def prepare_generation_config():
     with st.sidebar:
         st.sidebar.header("Parameters")
-        max_length = st.slider('Max Length', min_value=8, max_value=4096, value=512)
+        max_length = st.slider('Max Length', min_value=8, max_value=2048, value=1024)
         temperature = st.slider('Temperature', 0.0, 1.0, 0.7, step=0.01)
 
     generation_config = {
@@ -45,7 +47,7 @@ def prepare_generation_config():
 
 # Function to create new conversation
 def create_new_conversation():
-    st.session_state.messages = [{"role": "assistant", "content": "Hello, I am your assistant here, how can I help you?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello, I'm your assistant, how can I help you?"}]
     if 'chat_engine' in st.session_state:
         # Reset chat memory
         st.session_state.chat_engine._memory = ChatMemoryBuffer.from_defaults(token_limit=4000)
@@ -79,17 +81,30 @@ def init_models_rag():
 # Function to initialize models without RAG
 @st.cache_resource
 def init_models_non_rag():
-    # Initialize the base LLM model
-    llm = Ollama(
-        model="llama3", 
-        request_timeout=360.0,
-        num_ctx=generation_config['num_ctx'],
-        temperature=generation_config['temperature']
-    )
-    
-    return llm
+    def run_llama(prompt, context=""):
+        try:
+            # Include context from previous messages if applicable
+            full_prompt = context + "\n" + prompt if context else prompt
+            command = ["ollama", "run", "llama3"]
+            
+            # Run the command without shell=True, passing the full prompt
+            process = subprocess.run(
+                command,
+                input=full_prompt,
+                text=True,
+                capture_output=True,
+                check=True  # This will raise an exception if the command fails
+            )
+            return process.stdout
+        except subprocess.CalledProcessError as e:
+            return f"Error running Llama: {e.stderr}"
+        except FileNotFoundError:
+            return "Error: Ollama is not installed or not in PATH"
+        except Exception as e:
+            return f"An unexpected error occurred: {str(e)}"
 
-
+    # Return function to handle chat prompts and responses
+    return run_llama
 
 # Streamlit application
 st.title("💻 Local RAG Chatbot 🤖")
@@ -116,7 +131,7 @@ with st.sidebar:
     with col1:
         st.button('New Chat', on_click=create_new_conversation)
     with col2:
-        st.button('Clear History', on_click=lambda: setattr(st.session_state, 'messages', [{"role": "assistant", "content": "Hello, I am your assistant here, how can I help you?"}]))
+        st.button('Clear History', on_click=lambda: setattr(st.session_state, 'messages', [{"role": "assistant", "content": "Hello, I'm your assistant, how can I help you?"}]))
 
 generation_config = prepare_generation_config()
 
@@ -148,42 +163,45 @@ if is_rag_mode:
                 st.session_state['chat_engine'] = init_models_rag()
         else:
             st.sidebar.error("Please upload files for RAG mode.")
-else:
-    # Non-RAG mode initialization
+
+# Non-RAG mode initialization
+if not is_rag_mode:
     if 'chat_engine' not in st.session_state or 'current_mode' not in st.session_state or st.session_state['current_mode'] != 'non-rag':
-        st.session_state['chat_engine'] = init_models_non_rag()
+        st.session_state['chat_engine'] = init_models_non_rag()  # Initialize the non-RAG model function
         st.session_state['current_mode'] = 'non-rag'
 
 # Initialize chat history
 if 'messages' not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hello, I am your assistant here, how can I help you?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello, I'm your assistant, how can I help you?"}]
 
 # Display chat messages from history
 for message in st.session_state.messages:
     with st.chat_message(message['role'], avatar=message.get('avatar')):
         st.markdown(message['content'])
 
-# Display chat input field at the bottom
-if prompt := st.chat_input("Ask your question:"):
+# Display chat input field and handle multi-turn conversation
+if prompt := st.chat_input("Ask a question:"):
     # Check if chat engine is ready
     if 'chat_engine' not in st.session_state:
         st.error("Please upload files first or switch to non-RAG mode.")
         st.stop()
 
+    # Display the user's message in the chat
     with st.chat_message('user'):
         st.markdown(prompt)
 
-    # Generate response
-    response = st.session_state['chat_engine'].stream_chat(prompt)
-    with st.chat_message('assistant'):
-        message_placeholder = st.empty()
-        res = ''
-        for token in response.response_gen:
-            res += token
-            message_placeholder.markdown(res + '▌')
-        message_placeholder.markdown(res)
+    # Fetch context for multi-turn conversation
+    context = "\n".join([msg['content'] for msg in st.session_state.messages if msg['role'] == 'assistant'])
 
-    # Add messages to history
+    # Generate response in non-RAG mode
+    if not is_rag_mode:
+        response = st.session_state['chat_engine'](prompt, context)
+
+    # Display the assistant's response in the chat
+    with st.chat_message('assistant'):
+        st.markdown(response)
+
+    # Add messages to chat history
     st.session_state.messages.append({
         'role': 'user',
         'content': prompt,
