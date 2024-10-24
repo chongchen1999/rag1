@@ -75,3 +75,6 @@ The system tracks and displays:
 
 - Expand support for additional models and RAG-specific features
 - Optimize system for larger datasets and improve response times
+
+## Video Presentation
+https://www.youtube.com/watch?v=hvg70rU2LOQ
