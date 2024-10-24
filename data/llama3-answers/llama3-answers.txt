@@ -1,0 +1,98 @@
+💻 Local Chatbot 🤖
+
+🚀 A chatbot powered by LlamaIndex and Ollama 🦙
+
+Hello, I'm your assistant, how can I help you?
+
+During which period was UNIVAC 1107 developed, and what technological advancement characterized this era?
+a) 1937-1946, using vacuum tubes
+b) 1947-1962, using transistors
+c) 1963-1975, using integrated circuits
+d) 1975-present, using microprocessors
+The correct answer is (a) 1937-1946, using vacuum tubes.
+
+UNIVAC 1107 was developed during the period of 1946-1951, which was characterized by the use of vacuum tubes. Vacuum tubes were a type of electronic component that used a heated filament to control the flow of electric current. They were widely used in early computers and other electronic devices before the development of transistors.
+
+The UNIVAC 1107 was one of the first commercial computers, designed for business applications. It was released in 1951 and used vacuum tubes, magnetic drums for storage, and punched cards for input/output.
+
+Which historical development in 1973 fundamentally changed how computers could be interconnected?
+a) The invention of UNIX operating system
+b) Development of DRAM by Intel
+c) Robert Metcalfe's development of Ethernet
+d) The creation of the floppy disk
+The correct answer is (c) Robert Metcalfe's development of Ethernet.
+
+In 1973, Robert Metcalfe and David Boggs developed the first version of Ethernet, a local area network (LAN) technology that allowed computers to communicate with each other over short distances. This innovation fundamentally changed how computers could be interconnected, enabling the creation of networks and paving the way for modern communication systems.
+
+What significant advancement occurred in 2016 that marked a breakthrough in quantum computing?
+a) The first commercially available quantum computer
+b) The first quantum network
+c) The first reprogrammable quantum computer
+d) The first stable quantum bit
+The correct answer is (c) The first reprogrammable quantum computer.
+
+In 2016, IBM introduced the IBM Q, a cloud-based quantum computer that was the first reprogrammable quantum computer. This marked a significant breakthrough in quantum computing as it enabled users to write and run their own quantum algorithms on a large-scale quantum processor.
+
+In the context of early computer development, what was the primary motivation for creating ENIAC?
+a) Business automation
+b) Scientific research
+c) Census tabulation
+d) Military calculations
+The correct answer is (d) Military calculations.
+
+ENIAC (Electronic Numerical Integrator And Computer) was the first general-purpose electronic computer, developed in the 1940s. The primary motivation for creating ENIAC was to calculate artillery firing tables for the United States Army during World War II. The need for fast and accurate calculations of trajectories and impacts led to the development of this innovative machine.
+
+Which 1977 development represented a significant shift in making computers accessible to non-technical users?
+a) The Apple II launch
+b) The TRS-80's initial production
+c) The invention of VisiCalc
+d) The development of WordStar
+The correct answer is (c) The invention of VisiCalc.
+
+VisiCalc, which was first introduced in 1977, was the first electronic spreadsheet program. It allowed users to create and edit spreadsheets on a computer, making it easy for non-technical users to perform financial calculations and track data. This innovation made computers more accessible to people who were not programmers or technical experts.
+
+What was the key technological distinction of the Gavilan SC in 1983?
+a) It was the first portable computer with a GUI
+b) It was the first to use MS-DOS
+c) It was the first with a flip form factor marketed as a "laptop"
+d) It was the first to use integrated circuits
+The correct answer is (c) It was the first with a flip form factor marketed as a "laptop".
+
+The Gavilan SC, released in 1983, was indeed the first laptop computer to market itself as such. Its innovative design featured a flip-up screen and keyboard, making it portable and easy to use on the-go.
+
+In a Red-Black tree, which property is NOT required for the tree to be valid?
+a) Every node is either red or black
+b) The root is black
+c) All paths from root to NULL have the same number of red nodes
+d) All leaves (NULL) are considered black
+The correct answer is (c) All paths from root to NULL have the same number of red nodes.
+
+This property is not required for a Red-Black tree to be valid. The other options are actually properties that must hold true for a Red-Black tree to be valid.
+
+Given a distributed system using the Paxos consensus algorithm, what is the minimum number of nodes that must be operational to achieve consensus in a system with N nodes?
+a) N/2
+b) N/2 + 1
+c) 2N/3
+d) N - 1
+The correct answer is (b) N/2 + 1.
+
+In the Paxos consensus algorithm, the minimum number of nodes that must be operational to achieve consensus is N/2 + 1. This is because a majority of nodes must agree on a value for consensus to be reached.
+
+In the context of CPU cache design, which of the following cache mapping policies would result in the highest hit rate but potentially the most expensive implementation?
+a) Direct mapping
+b) Set associative mapping
+c) Fully associative mapping
+d) Sequential mapping
+The correct answer is (c) Fully associative mapping.
+
+Fully Associative Mapping allows any cache line to store any block from main memory. This means that the most frequently accessed lines are more likely to be stored in the cache, resulting in a higher hit rate. However, as you mentioned, this policy can be the most expensive implementation because it requires a large number of tags and comparators to keep track of which cache line stores which block.
+
+When implementing a B+ tree index in a database system, what is the optimal fill factor (percentage of space used in each node) to maximize performance?
+a) 50%
+b) 67%
+c) 75%
+d) 100%
+The correct answer is (b) 67%.
+
+A higher fill factor (e.g., 75%) can lead to slower query performance because the tree becomes more bushy and harder to navigate. On the other hand, a lower fill factor (e.g., 50%) can result in more page splits and inserts, which can negatively impact performance. A fill factor of 67% strikes a good balance between these two extremes.
+

@@ -1,0 +1,143 @@
+💻 Local Chatbot 🤖
+
+🚀 A chatbot powered by LlamaIndex and Ollama 🦙
+
+Hello, I'm your assistant, how can I help you?
+
+During which period was UNIVAC 1107 developed, and what technological advancement characterized this era?
+
+a) 1937-1946, using vacuum tubes
+
+b) 1947-1962, using transistors
+
+c) 1963-1975, using integrated circuits
+
+d) 1975-present, using microprocessors
+
+The correct answer is (c) 1963-1975, using integrated circuits.
+
+UNIVAC 1107 was developed and released in the early 1960s. Integrated circuits (ICs) revolutionized computing during this period. By combining multiple transistors and other electronic components onto a single semiconductor chip, ICs made computers smaller, faster, and more reliable.
+
+Which historical development in 1973 fundamentally changed how computers could be interconnected?
+
+a) The invention of UNIX operating system
+
+b) Development of DRAM by Intel
+
+c) Robert Metcalfe's development of Ethernet
+
+d) The creation of the floppy disk
+
+The answer is (c) Robert Metcalfe's development of Ethernet.
+
+Ethernet provided a standardized way for computers to communicate with each other over a local area network (LAN). This was a fundamental shift from earlier methods that were often proprietary and limited in range.
+
+What significant advancement occurred in 2016 that marked a breakthrough in quantum computing?
+
+a) The first commercially available quantum computer
+
+b) The first quantum network
+
+c) The first reprogrammable quantum computer
+
+d) The first stable quantum bit
+
+The answer is (d) The first stable quantum bit.
+
+2016 was a pivotal year for quantum computing progress. While commercial quantum computers and networks were still years away, researchers made significant strides in individual qubit stability.
+
+In the context of early computer development, what was the primary motivation for creating ENIAC?
+
+a) Business automation
+
+b) Scientific research
+
+c) Census tabulation
+
+d) Military calculations
+
+The primary motivation for creating ENIAC was (d) Military calculations.
+
+World War II: ENIAC was developed during World War II. The US military needed a powerful computer to perform complex ballistic calculations for artillery and other weaponry.
+
+Which 1977 development represented a significant shift in making computers accessible to non-technical users?
+
+a) The Apple II launch
+
+b) The TRS-80's initial production
+
+c) The invention of VisiCalc
+
+d) The development of WordStar
+
+The answer is (a) The Apple II launch.
+
+The Apple II was designed with a focus on user-friendliness, featuring a color display, built-in keyboard, and a simple operating system. This made it significantly more accessible to non-technical users compared to the clunky and complex computers of the time.
+
+What was the key technological distinction of the Gavilan SC in 1983?
+
+a) It was the first portable computer with a GUI
+
+b) It was the first to use MS-DOS
+
+c) It was the first with a flip form factor marketed as a "laptop"
+
+d) It was the first to use integrated circuits
+
+The key technological distinction of the Gavilan SC in 1983 was (c) It was the first with a flip form factor marketed as a "laptop".
+
+While it wasn't the first portable computer, its clamshell design and marketing as a "laptop" were groundbreaking.
+
+In a Red-Black tree, which property is NOT required for the tree to be valid?
+
+a) Every node is either red or black
+
+b) The root is black
+
+c) All paths from root to NULL have the same number of red nodes
+
+d) All leaves (NULL) are considered black
+
+The answer is (c) All paths from root to NULL have the same number of red nodes.
+
+Red-Black Tree Properties: Red-Black trees are self-balancing binary search trees that maintain balance through specific color (red or black) properties for each node.
+
+Given a distributed system using the Paxos consensus algorithm, what is the minimum number of nodes that must be operational to achieve consensus in a system with N nodes?
+
+a) N/2
+
+b) N/2 + 1
+
+c) 2N/3
+
+d) N - 1
+
+The correct answer is (b) N/2 + 1.
+
+Paxos Consensus: Paxos is a distributed consensus algorithm used to ensure that all nodes in a system agree on the same value (a decision).
+
+In the context of CPU cache design, which of the following cache mapping policies would result in the highest hit rate but potentially the most expensive implementation?
+
+a) Direct mapping
+
+b) Set associative mapping
+
+c) Fully associative mapping
+
+d) Sequential mapping
+
+The answer is (c) Fully associative mapping.
+
+Fully Associative Mapping: This policy allows any memory block to be placed in any cache line. This means the CPU can always find the most recently used data, leading to the highest possible hit rate.
+
+When implementing a B+ tree index in a database system, what is the optimal fill factor (percentage of space used in each node) to maximize performance?
+
+a) 50%
+
+b) 67%
+
+c) 75%
+
+d) 100%
+
+There's no single "optimal" fill factor for a B+ tree index that works best in all situations. The ideal fill factor depends on several factors, including data distribution, average key length, and hardware characteristics.

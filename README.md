@@ -64,6 +64,7 @@ The system tracks and displays:
 ## Project Structure
 
 - `app.py`: Main application logic and interface
+- `ui.py`: Manages the user interface and chat history.
 - `config.py`: Configuration settings (model names, token limits, and system prompt)
 - `models.py`: Initializes models for both RAG and non-RAG modes
 - `rag_module.py`: Handles RAG-specific logic for response generation
@@ -74,7 +75,3 @@ The system tracks and displays:
 
 - Expand support for additional models and RAG-specific features
 - Optimize system for larger datasets and improve response times
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
